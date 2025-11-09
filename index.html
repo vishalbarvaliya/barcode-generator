@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="barcode-box">
+      <h1>Barcode Generator</h1>
+      <p class="link-text">Paste multiple lines to generate multiple barcodes</p>
+
+      <form id="barcodeForm">
+        <textarea id="barcodeText" rows="5" placeholder="Enter or paste barcodes here..." required></textarea>
+        <button type="submit">Generate Barcodes</button>
+      </form>
+
+      <div id="barcodeContainer" class="output"></div>
+
+      <p class="footer">Powered by <span>avishaba</span></p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
