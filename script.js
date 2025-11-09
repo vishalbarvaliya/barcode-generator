@@ -1,3 +1,4 @@
+// Generate barcodes
 document.getElementById("barcodeForm").addEventListener("submit", function(e) {
   e.preventDefault();
   
@@ -26,4 +27,10 @@ document.getElementById("barcodeForm").addEventListener("submit", function(e) {
       margin: 10
     });
   });
+});
+
+// Erase button functionality
+document.getElementById("eraseBtn").addEventListener("click", function() {
+  document.getElementById("barcodeText").value = ""; // clear textarea
+  document.getElementById("barcodeContainer").innerHTML = ""; // clear barcodes
 });
