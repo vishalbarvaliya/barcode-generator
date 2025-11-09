@@ -15,7 +15,10 @@
 
       <form id="barcodeForm">
         <textarea id="barcodeText" rows="5" placeholder="Enter or paste barcodes here..." required></textarea>
-        <button type="submit">Generate Barcodes</button>
+        <div class="button-group">
+          <button type="submit">Generate Barcodes</button>
+          <button type="button" id="eraseBtn">Erase</button>
+        </div>
       </form>
 
       <div id="barcodeContainer" class="output"></div>
