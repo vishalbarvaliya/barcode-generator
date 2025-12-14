@@ -80,3 +80,73 @@ button:hover {
   margin-bottom: 15px;
 }
 
+
+/* Runner layer */
+#runner-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Runner */
+.doodle-runner {
+  position: absolute;
+  bottom: 30px;
+  left: -250px;
+  opacity: 0.18;
+  animation-name: runAcross;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* SVG base */
+.doodle-runner svg {
+  stroke: #000;
+  stroke-width: 3;
+  fill: none;
+}
+
+/* 📦 Box — ATTACHED TO HAND */
+.box-emoji {
+  position: absolute;
+  left: 58px;   /* closer to hand */
+  top: 44px;    /* aligned with arm */
+  font-size: 20px;
+  transform-origin: left center;
+  animation: boxTilt 0.4s ease-in-out infinite alternate;
+}
+
+/* Legs animation */
+.leg-left {
+  animation: legLeft 0.4s infinite alternate;
+  transform-origin: top;
+}
+
+.leg-right {
+  animation: legRight 0.4s infinite alternate;
+  transform-origin: top;
+}
+
+/* Keyframes */
+@keyframes runAcross {
+  from { transform: translateX(-300px); }
+  to   { transform: translateX(120vw); }
+}
+
+@keyframes legLeft {
+  from { transform: rotate(20deg); }
+  to   { transform: rotate(-20deg); }
+}
+
+@keyframes legRight {
+  from { transform: rotate(-20deg); }
+  to   { transform: rotate(20deg); }
+}
+
+@keyframes boxTilt {
+  from { transform: rotate(5deg); }
+  to   { transform: rotate(-5deg); }
+}
+
