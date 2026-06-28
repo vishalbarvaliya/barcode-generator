@@ -1,136 +1,30 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Tote Filter</title>
-
-<style>
-body{
-    font-family:Arial;
-    max-width:900px;
-    margin:40px auto;
-    padding:20px;
-}
-
-textarea{
-    width:100%;
-    height:300px;
-    padding:12px;
-    font-size:14px;
-}
-
-button{
-    padding:10px 18px;
-    cursor:pointer;
-    margin-right:10px;
-}
-
-.controls{
-    margin-top:15px;
-}
-
-#output{
-    margin-top:20px;
-    white-space:pre-wrap;
-    background:#f4f4f4;
-    padding:15px;
-    min-height:120px;
-    border-radius:8px;
-}
-
-#copyMsg{
-    margin-left:10px;
-    color:green;
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcode Generator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
 </head>
-
 <body>
+  <div class="container">
+    <div class="barcode-box">
+      <h1>Barcode Generator</h1>
+      <p class="link-text">Paste multiple lines to generate multiple barcodes</p>
 
-<textarea id="input" placeholder="Paste tote + station data here"></textarea>
+      <form id="barcodeForm">
+        <textarea id="barcodeText" rows="5" placeholder="Enter or paste barcodes here..." required></textarea>
+        <div class="button-group">
+          <button type="submit">Generate Barcodes</button>
+          <button type="button" id="eraseBtn">Erase</button>
+        </div>
+      </form>
 
-<div class="controls">
-<button onclick="processData()">Process</button>
-<button onclick="copyOutput()">Copy Output</button>
-<button onclick="clearAll()">Clear</button>
-<span id="copyMsg"></span>
-</div>
+      <div id="barcodeContainer" class="output"></div>
+    </div>
+  </div>
 
-<div id="output"></div>
-
-<script>
-
-function processData() {
-
-const lines =
-document
-.getElementById("input")
-.value
-.split("\n")
-.map(x => x.trim())
-.filter(Boolean);
-
-const stationMap = new Map();
-const seenTotes = new Set();
-
-for (let i = 0; i < lines.length; i += 2) {
-
-    const tote = lines[i];
-    const station = lines[i + 1];
-
-    if (!tote || !station) continue;
-
-    // remove duplicate totes
-    if (seenTotes.has(tote)) continue;
-
-    seenTotes.add(tote);
-
-    if (!stationMap.has(station)) {
-        stationMap.set(station, []);
-    }
-
-    stationMap.get(station).push(tote);
-}
-
-const result =
-Array.from(stationMap.values())
-.map(group => group.join("/"))
-.join("\n");
-
-document.getElementById("output").textContent = result;
-
-document.getElementById("copyMsg").textContent = "";
-}
-
-function copyOutput() {
-
-const output =
-document.getElementById("output").textContent;
-
-if (!output) {
-    alert("No output to copy");
-    return;
-}
-
-navigator.clipboard.writeText(output);
-
-document.getElementById("copyMsg").textContent = "Copied ✓";
-
-setTimeout(() => {
-    document.getElementById("copyMsg").textContent = "";
-}, 2000);
-
-}
-
-function clearAll() {
-
-document.getElementById("input").value = "";
-document.getElementById("output").textContent = "";
-document.getElementById("copyMsg").textContent = "";
-
-}
-
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
